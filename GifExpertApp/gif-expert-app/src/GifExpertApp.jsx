@@ -15,7 +15,7 @@ const GifExpertApp = () => {
 
   return (
     <>
-      <h1>Gif Expert App</h1>
+      <h1 aria-label="title">Gif Expert App</h1>
 
       <AddCategory
         onNewCategory={(event) => onAddCategory(event)}

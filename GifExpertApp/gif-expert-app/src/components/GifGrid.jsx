@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useFetchGifs } from "../hooks/useFetchGifs";
 import { GifItem } from "./GifItem";
 
@@ -8,7 +9,11 @@ export const GifGrid = ({ category, onDeleteCategory }) => {
     <>
       <div className="gridTitle">
         <h3>{category}</h3>
-        <button onClick={onDeleteCategory} className="btn">
+        <button
+          onClick={onDeleteCategory}
+          className="btn"
+          aria-label="eliminar"
+        >
           X
         </button>
       </div>
@@ -20,4 +25,9 @@ export const GifGrid = ({ category, onDeleteCategory }) => {
       </div>
     </>
   );
+};
+
+GifGrid.propTypes = {
+  category: PropTypes.string.isRequired,
+  onDeleteCategory: PropTypes.func,
 };
