@@ -25,7 +25,7 @@ export const SearchPage = () => {
 
   return (
     <>
-      <h1>Search</h1>
+      <h1>Find your Hero</h1>
       <hr />
       <div className="row">
         <div className="col-5">
@@ -41,7 +41,7 @@ export const SearchPage = () => {
               value={searchText}
               onChange={onInputChange}
             />
-            <button className="btn btn-outline-primary mt-1">Search</button>
+            <button className="btn btn-outline-primary mt-2">Search</button>
           </form>
         </div>
 

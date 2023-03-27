@@ -8,8 +8,7 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const heroImageUrl = `/assets/heroes/${id}.jpg`;
-
+  const heroImageUrl = `/heroes/${id}.jpg`;
   const CharactersByHero = ({ alter_ego, characters }) => {
     if (alter_ego === characters) return <></>;
     return <p>{characters}</p>;
@@ -19,10 +18,10 @@ export const HeroCard = ({
     <div className="d-flex align-items-stretch col-sm-8 col-md-8 col-lg-4 animate__animated animate__fadeIn animate__delay-0.5s">
       <div className="card">
         <div className="row">
-          <div className="col-sm-12 col-md-4 col-lg-4">
+          <div className="col-sm-12 col-md-8 col-lg-4">
             <img src={heroImageUrl} alt={superhero} className="card-img" />
           </div>
-          <div className="col-sm col-md-8 col-lg-8">
+          <div className="col-8">
             <div className="card-body">
               <h5 className="card-title">{superhero}</h5>
               <p className="card-text">{alter_ego}</p>
