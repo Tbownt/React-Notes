@@ -4,9 +4,8 @@ export const MarvelPage = () => {
     <>
       <h1>MarvelPage</h1>
       <hr />
-      <ul>
-        <HeroList publisher="Marvel Comics" />
-      </ul>
+
+      <HeroList publisher="Marvel Comics" />
     </>
   );
 };
