@@ -1,10 +1,14 @@
-import { SaveOutlined } from "@mui/icons-material";
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import SaveOutlined from "@mui/icons-material/SaveOutlined";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import { ImageGallery } from "../components";
 
 export const NoteView = () => {
   return (
     <Grid
+      className="animate__animated animate__fadeIn animate__faster"
       container
       direction="row"
       justifyContent="space-between"

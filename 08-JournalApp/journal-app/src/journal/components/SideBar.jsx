@@ -1,19 +1,19 @@
-import { TurnedInNot } from "@mui/icons-material";
-import {
-  Box,
-  Divider,
-  Drawer,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import TurnedInNot from "@mui/icons-material/TurnedInNot";
 
 export const SideBar = ({ drawerWidth }) => {
+  const { displayName } = useSelector((state) => state.auth);
   return (
     <Box
       component="nav"
@@ -29,7 +29,7 @@ export const SideBar = ({ drawerWidth }) => {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Andres Salom
+            {displayName}
           </Typography>
         </Toolbar>
         <Divider />
