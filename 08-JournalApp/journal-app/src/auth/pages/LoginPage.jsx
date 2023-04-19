@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkingAuthentication,
   startGoogleSignIn,
   startLoginWithEmailPassword,
 } from "../../store/auth";
@@ -16,13 +15,15 @@ import Typography from "@mui/material/Typography";
 import Google from "@mui/icons-material/Google";
 import Alert from "@mui/material/Alert";
 
+const formData = {
+  email: "",
+  password: "",
+};
+
 export const LoginPage = () => {
   const { status, errorMessage } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { email, password, onInputChange } = useForm({
-    email: "",
-    password: "",
-  });
+  const { email, password, onInputChange } = useForm(formData);
 
   const isAuthenticating = useMemo(() => status === "checking", [status]);
 
@@ -33,7 +34,6 @@ export const LoginPage = () => {
   };
 
   const onGoogleSignIn = () => {
-    console.log("google signin");
     dispatch(startGoogleSignIn());
   };
 
