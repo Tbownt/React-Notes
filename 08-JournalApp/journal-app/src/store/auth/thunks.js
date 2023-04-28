@@ -46,8 +46,8 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
       password,
     });
     if (!result.ok) return dispatch(logout(result));
-    const { uid, displayName } = result;
-    dispatch(login({ uid, displayName, email }));
+    // const { uid, displayName, ok } = result;
+    dispatch(login(result));
   };
 };
 

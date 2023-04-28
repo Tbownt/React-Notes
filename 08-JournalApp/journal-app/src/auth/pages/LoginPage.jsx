@@ -29,11 +29,12 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-
+    console.log({ email, password });
     dispatch(startLoginWithEmailPassword({ email, password }));
   };
 
   const onGoogleSignIn = () => {
+    // console.log("google sign in");
     dispatch(startGoogleSignIn());
   };
 
@@ -42,6 +43,7 @@ export const LoginPage = () => {
       <form
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
+        aria-label="form"
       >
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -60,6 +62,9 @@ export const LoginPage = () => {
               label="Contraseña"
               type="password"
               placeholder="Contraseña"
+              inputProps={{
+                "data-testid": "password",
+              }}
               fullWidth
               name="password"
               value={password}
@@ -88,6 +93,7 @@ export const LoginPage = () => {
                 fullWidth
                 onClick={onGoogleSignIn}
                 disabled={isAuthenticating}
+                aria-label="google-btn"
               >
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>

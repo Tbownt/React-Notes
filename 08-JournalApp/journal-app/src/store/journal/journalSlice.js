@@ -21,7 +21,7 @@ export const journalSlice = createSlice({
       state.messageSaved = "";
     },
     setSavig: (state) => {
-      state.isSaving = true;
+      state.isSaving = false;
       state.messageSaved = "";
     },
     updateNote: (state, action) => {
@@ -47,6 +47,7 @@ export const journalSlice = createSlice({
     deleteNoteById: (state, action) => {
       state.active = null;
       state.notes = state.notes.filter((note) => note.id !== action.payload);
+      state.messageSaved = "";
     },
     savingNewNote: (state) => {
       state.isSaving = true;
