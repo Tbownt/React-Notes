@@ -114,13 +114,16 @@ export const CalendarModal = () => {
           {/* input de fecha */}
           <DatePicker
             selected={formValues.start}
-            className="form-control"
+            className="form-control custom-datepicker"
             onChange={(event) => onDateChanged(event, "start")}
             dateFormat="Pp"
             showTimeSelect
             locale="es"
             timeCaption="Hora"
             timeFormat="h:mm:ss a"
+            popperPlacement={
+              window.innerWidth > 768 ? "bottom-start" : "bottom-end"
+            }
           />
         </div>
 

@@ -41,6 +41,7 @@ export const CalendarPage = () => {
     openDateModal();
   };
   const onSelect = (event) => {
+    console.log(event);
     setActiveEvent(event);
   };
   const onViewChanged = (event) => {
@@ -49,6 +50,7 @@ export const CalendarPage = () => {
 
   useEffect(() => {
     startLoadingEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import { calendarApi } from "../api";
 import {
   clearErrorMessage,
   onChecking,
-  onClearEvents,
+  onClearCalendar,
   onLogin,
   onLogout,
 } from "../store";
@@ -74,7 +74,7 @@ export const useAuthStore = () => {
 
   const startLogout = () => {
     localStorage.clear();
-    dispatch(onClearEvents());
+    dispatch(onClearCalendar());
     dispatch(onLogout());
   };
 
