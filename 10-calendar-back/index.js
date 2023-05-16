@@ -11,7 +11,11 @@ const app = express();
 dbConnection();
 
 // CORS
-app.use(cors());
+app.use(
+  cors({
+    origin: [process.env.ORIGIN, "http://localhost:3001"],
+  })
+);
 app.use(morgan("dev"));
 
 // Directorio Público
