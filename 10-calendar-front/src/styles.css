@@ -38,6 +38,12 @@
   outline: none;
   padding: 10px;
 }
+@media (max-width: 600px) {
+  .modal {
+    width: 85%;
+    height: 75%;
+  }
+}
 
 textarea {
   resize: none;

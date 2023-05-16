@@ -4,10 +4,15 @@ import {
   onSetActiveEvent,
   onUpdateEvent,
   onDeleteEvent,
+  onLoadEvents,
 } from "../store/calendar/calendarSlice";
+import { calendarApi } from "../api";
+import { convertEventsToDate } from "../helpers";
+import Swal from "sweetalert2";
 
 export const useCalendarStore = () => {
   const { events, activeEvent } = useSelector((state) => state.calendar);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const setActiveEvent = (calendarEvent) => {
@@ -15,10 +20,18 @@ export const useCalendarStore = () => {
   };
 
   const startSavingEvent = async (calendarEvent) => {
-    if (calendarEvent._id) {
-      dispatch(onUpdateEvent({ ...calendarEvent }));
-    } else {
-      dispatch(onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }));
+    try {
+      if (calendarEvent.id) {
+        await calendarApi.put(`/events/${calendarEvent.id}`, calendarEvent);
+        dispatch(onUpdateEvent({ ...calendarEvent, user }));
+        return;
+      }
+      const { data } = await calendarApi.post("/events", calendarEvent);
+
+      dispatch(onAddNewEvent({ ...calendarEvent, id: data.evento.id, user }));
+    } catch (error) {
+      console.log("error al crear evento", error.message);
+      Swal.fire("Error al guardar", error.response.data?.msg, "error");
     }
   };
 
@@ -26,6 +39,15 @@ export const useCalendarStore = () => {
     dispatch(onDeleteEvent());
   };
 
+  const startLoadingEvents = async () => {
+    try {
+      const { data } = await calendarApi.get("/events");
+      const events = convertEventsToDate(data.eventos);
+      dispatch(onLoadEvents(events));
+    } catch (error) {
+      console.log("error cargando eventos", error.message);
+    }
+  };
   return {
     //Propiedades
     events,
@@ -36,5 +58,6 @@ export const useCalendarStore = () => {
     setActiveEvent,
     startSavingEvent,
     startDeletingEvent,
+    startLoadingEvents,
   };
 };

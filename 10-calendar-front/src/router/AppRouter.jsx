@@ -26,10 +26,10 @@ export const AppRouter = () => {
       ) : (
         <>
           <Route path="/" element={<CalendarPage />} />
+          {/* Esta es una ruta a prueba de fallos */}
           <Route path="/*" element={<Navigate to="/" />} />
         </>
       )}
-      {/* Esta es una ruta a prueba de fallos */}
     </Routes>
   );
 };
