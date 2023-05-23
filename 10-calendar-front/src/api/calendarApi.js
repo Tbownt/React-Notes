@@ -4,7 +4,7 @@ import axios from "axios";
 // const { VITE_API_URL } = getEnvVariables();
 
 const calendarApi = axios.create({
-  baseURL: "https://tbowntcalendarback.up.railway.app/api",
+  baseURL: "http://localhost:3001/api",
 });
 
 calendarApi.interceptors.request.use((config) => {
