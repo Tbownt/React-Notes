@@ -7,11 +7,15 @@ export const journalSlice = createSlice({
     messageSaved: "",
     notes: [],
     active: null,
+    isModalOpen: false,
   },
   reducers: {
     addNewEmptyNote: (state, action) => {
       state.notes.push(action.payload);
       state.isSaving = false;
+    },
+    onToggleModalState: (state) => {
+      state.isModalOpen = !state.isModalOpen;
     },
     setActiveNote: (state, action) => {
       state.active = action.payload;
@@ -65,4 +69,5 @@ export const {
   setPhotosToActiveNote,
   setSavig,
   updateNote,
+  onToggleModalState,
 } = journalSlice.actions;

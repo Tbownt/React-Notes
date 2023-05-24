@@ -20,6 +20,7 @@ import "sweetalert2/dist/sweetalert2.css";
 import IconButton from "@mui/material/IconButton";
 import UploadOutlined from "@mui/icons-material/UploadOutlined";
 import DeleteOutLine from "@mui/icons-material/DeleteOutline";
+import { getCurrentDate } from "../../helpers/getCurrentDate";
 
 export const NoteView = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,8 @@ export const NoteView = () => {
   const fileInputRef = useRef();
 
   const dateString = useMemo(() => {
-    const newDate = new Date(date).toUTCString();
-    return newDate;
-  }, [date]);
+    return getCurrentDate();
+  }, []);
 
   useEffect(() => {
     dispatch(setActiveNote(formState));
@@ -71,9 +71,7 @@ export const NoteView = () => {
       sx={{ mb: 1 }}
     >
       <Grid item>
-        <Typography fontSize={39} fontWeight={100}>
-          {dateString}
-        </Typography>
+        <Typography fontSize={35}>{dateString}</Typography>
       </Grid>
       <Grid item>
         <input
@@ -83,13 +81,15 @@ export const NoteView = () => {
           ref={fileInputRef}
           onChange={onFileInputChange}
         />
-        <IconButton
+        <Button
           color="primary"
           disabled={isSaving}
           onClick={() => fileInputRef.current.click()}
+          sx={{ marginRight: "5px" }}
         >
           <UploadOutlined />
-        </IconButton>
+          &nbsp; Subir Imagen
+        </Button>
         <Button
           onClick={onSaveNote}
           disabled={isSaving}
