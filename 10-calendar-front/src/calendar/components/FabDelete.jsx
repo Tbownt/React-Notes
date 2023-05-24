@@ -1,20 +1,19 @@
-import { useSelector } from "react-redux";
-import { useCalendarStore } from "../../hooks";
+import { useCalendarStore, useUiStore } from "../../hooks";
 import Swal from "sweetalert2";
 
 export const FabDelete = () => {
   const { startDeletingEvent, hasEventSelected } = useCalendarStore();
-  const { isDateModalOpen } = useSelector((state) => state.ui);
+  const { isDateModalOpen } = useUiStore();
 
   const handleDelete = () => {
     Swal.fire({
       title: "¿Estas seguro?",
-      text: "No podras rehacer esta accion una vez tomada!",
+      text: "No podras rehacer esta accion una vez tomada",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Si, estoy seguro!",
+      confirmButtonText: "Si, estoy seguro",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -29,6 +28,7 @@ export const FabDelete = () => {
 
   return (
     <button
+      aria-label="btn-delete"
       className="btn btn-danger fab-danger"
       onClick={handleDelete}
       style={{

@@ -1,5 +1,9 @@
 import axios from "axios";
-// import { getEnvVariables } from "../helpers/getEnvVariables";
+// import { getEnvVariables } from "../helpers";
+// const { VITE_API_URL } = getEnvVariables();
+
+//el codigo documentado de arriba lo utilizare para desarrollo y correr las pruebas unitarias, de lo contrario la version de produccion fallaria
+//por el import.meta.env y sus coalisiones
 
 const { VITE_API_URL } = import.meta.env;
 

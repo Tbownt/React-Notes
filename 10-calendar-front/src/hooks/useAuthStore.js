@@ -36,12 +36,15 @@ export const useAuthStore = () => {
         email,
         password,
       });
+      localStorage.setItem("token", data.token);
 
-      localStorage.setItem("token", data?.token);
-      localStorage.setTime("token-init-date", new Date().getTime());
-      dispatch(onLogin({ name: data?.name, uid: data?.uid }));
+      // Util para realizar calculos con respecto a la hora de expiracion del token.
+      localStorage.setItem("token-init-date", new Date().getTime());
+
+      dispatch(onLogin({ name: data.name, uid: data.uid }));
     } catch (error) {
-      dispatch(onLogout(error.response.data?.msg || "--"));
+      dispatch(onLogout(error.response.data?.msg || "Error interno."));
+      // Con timeout pequeño para triggerear una ejecucion del useEffect en el LoginPage.jsx
       setTimeout(() => {
         dispatch(clearErrorMessage());
       }, 10);

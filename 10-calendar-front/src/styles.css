@@ -69,3 +69,7 @@ textarea {
   left: 25px;
   z-index: 10;
 }
+
+.github {
+  font-weight: 500;
+}

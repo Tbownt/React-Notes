@@ -1,7 +1,7 @@
-// export const getEnvVariables = () => {
-//   // import.meta.env;
+export const getEnvVariables = () => {
+  import.meta.env;
 
-//   return {
-//     VITE_API_UIRL: import.meta.env.VITE_API_UIRL,
-//   };
-// };
+  return {
+    VITE_API_UIRL: import.meta.env.VITE_API_UIRL,
+  };
+};
