@@ -12,6 +12,7 @@ export const JournalPage = () => {
   const onClickNewNote = () => {
     dispatch(startNewNote());
   };
+
   return (
     <JournalLayout>
       {!!active ? <NoteView /> : <NothingSelectedView />}

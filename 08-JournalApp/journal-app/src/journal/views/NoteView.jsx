@@ -20,7 +20,6 @@ import "sweetalert2/dist/sweetalert2.css";
 import IconButton from "@mui/material/IconButton";
 import UploadOutlined from "@mui/icons-material/UploadOutlined";
 import DeleteOutLine from "@mui/icons-material/DeleteOutline";
-import { getCurrentDate } from "../../helpers/getCurrentDate";
 
 export const NoteView = () => {
   const dispatch = useDispatch();
@@ -34,8 +33,9 @@ export const NoteView = () => {
   const fileInputRef = useRef();
 
   const dateString = useMemo(() => {
-    return getCurrentDate();
-  }, []);
+    const newDate = new Date(date);
+    return newDate.toUTCString();
+  }, [date]);
 
   useEffect(() => {
     dispatch(setActiveNote(formState));
@@ -43,7 +43,7 @@ export const NoteView = () => {
 
   useEffect(() => {
     if (messageSaved.length > 0) {
-      Swal.fire("Nota actualizada", messageSaved, "success");
+      Swal.fire("¡Guardado!", messageSaved, "success");
     }
   }, [messageSaved]);
 
@@ -58,7 +58,25 @@ export const NoteView = () => {
   };
 
   const onDelete = () => {
-    dispatch(startDeletingNote());
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertirlo esta accion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#228B22",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, estoy seguro",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(startDeletingNote());
+        Swal.fire(
+          "¡Eliminado!",
+          "Tu nota ha sido borrada correctamente.",
+          "success"
+        );
+      }
+    });
   };
 
   return (
@@ -71,7 +89,7 @@ export const NoteView = () => {
       sx={{ mb: 1 }}
     >
       <Grid item>
-        <Typography fontSize={35}>{dateString}</Typography>
+        <Typography fontSize={32}>{dateString}</Typography>
       </Grid>
       <Grid item>
         <input
@@ -105,8 +123,8 @@ export const NoteView = () => {
           type="text"
           variant="filled"
           fullWidth
-          placeholder="Ingrese un titulo"
-          label="Titulo"
+          placeholder="Ingrese un título"
+          label="Título"
           sx={{ border: "none", mb: 1 }}
           name="title"
           value={title}
@@ -117,7 +135,7 @@ export const NoteView = () => {
           variant="filled"
           fullWidth
           multiline
-          placeholder="Que sucedio en el dia de hoy?"
+          placeholder="¿Qué sucedió en el día de hoy?"
           minRows={5}
           name="body"
           value={body}

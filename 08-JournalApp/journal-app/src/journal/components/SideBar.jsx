@@ -36,7 +36,7 @@ export const SideBar = ({ drawerWidth }) => {
           height: "100vh",
         }}
       >
-        <ChevronRightIcon />
+        <ChevronRightIcon fontSize="large" />
       </Button>
       <Drawer
         variant="persistent"
@@ -67,7 +67,7 @@ export const SideBar = ({ drawerWidth }) => {
           onClick={toggleDrawer}
           sx={{ sm: { height: "20%" }, height: "15%", borderRadius: "25px" }}
         >
-          <ChevronLeftIcon />
+          <ChevronLeftIcon fontSize="large" />
         </Button>
       </Drawer>
     </Box>

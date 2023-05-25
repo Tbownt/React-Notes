@@ -29,12 +29,10 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log({ email, password });
     dispatch(startLoginWithEmailPassword({ email, password }));
   };
 
   const onGoogleSignIn = () => {
-    // console.log("google sign in");
     dispatch(startGoogleSignIn());
   };
 
@@ -83,6 +81,7 @@ export const LoginPage = () => {
                 variant="contained"
                 fullWidth
                 disabled={isAuthenticating}
+                sx={{ backgroundColor: "#001845" }}
               >
                 Login
               </Button>
@@ -94,6 +93,7 @@ export const LoginPage = () => {
                 onClick={onGoogleSignIn}
                 disabled={isAuthenticating}
                 aria-label="google-btn"
+                sx={{ backgroundColor: "#001845" }}
               >
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>

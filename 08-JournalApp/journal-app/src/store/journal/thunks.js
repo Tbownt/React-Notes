@@ -21,10 +21,10 @@ export const startNewNote = () => {
       title: "",
       body: "",
       date: new Date().getTime(),
+      imageUrls: [],
     };
 
     const newDoc = doc(collection(FirebaseDB, `${uid}/journal/notes`));
-
     await setDoc(newDoc, newNote);
 
     newNote.id = newDoc.id;
@@ -65,13 +65,17 @@ export const startSaveNotes = () => {
 export const startUploadingFiles = (files = []) => {
   return async (dispatch) => {
     dispatch(setSavig());
-    const fileUploadPromises = [];
-    for (const file of files) {
-      fileUploadPromises.push(fileUpload(file));
-    }
+    try {
+      const fileUploadPromises = [];
+      for (const file of files) {
+        fileUploadPromises.push(fileUpload(file));
+      }
 
-    const photosUrls = await Promise.all(fileUploadPromises);
-    dispatch(setPhotosToActiveNote(photosUrls));
+      const photosUrls = await Promise.all(fileUploadPromises);
+      dispatch(setPhotosToActiveNote(photosUrls));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 
