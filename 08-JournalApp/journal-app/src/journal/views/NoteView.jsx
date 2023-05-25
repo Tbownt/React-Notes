@@ -60,7 +60,7 @@ export const NoteView = () => {
   const onDelete = () => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: "No podrás revertirlo esta accion",
+      text: "No podrás revertir esta accion",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#228B22",
